@@ -14,11 +14,20 @@
       type="text/css"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="jquery-3.4.1.slim.min.js"></script>
     <script src="script.js"></script>
   </head>
 
   <body>
+    <div id="form-container" style="display: none;">
+      <form action="">
+        Enter the icons in the order you want to show:
+        <textarea rows="4" cols="50" name="comment" form="usrform">
+          Enter text here...</textarea
+        >
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
     <div class="modal-header">
       <h1 class="logo">
         <i class="fa fa-briefcase" id="toolbox-icon"></i>

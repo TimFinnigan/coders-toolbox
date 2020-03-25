@@ -6,7 +6,9 @@ $(document).ready(function() {
   };
   $("#settings-icon").click(function() {
     console.log(data);
-    // var tData = JSON.parse("icons.json");
-    // alert(tData);
+    $("#form-container").show();
+  });
+  $("form").submit(function() {
+    alert("Submitted");
   });
 });
