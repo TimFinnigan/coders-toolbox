@@ -29,7 +29,7 @@ $(document).ready(function() {
       icon: "fa fa-reddit",
       title: "Reddit",
       url: "https://www.reddit.com"
-    } ,
+    },
     {
       icon: "fa fa-jsfiddle",
       title: "JSFiddle",
@@ -37,55 +37,55 @@ $(document).ready(function() {
     }
   ];
 
-  let row = 0; // 4 icons per row
-  let count = 0;
-  let itemsInRow = 0;
+  const addIcons = function(data) {
+    let row = 0; // 4 icons per row
+    let count = 0;
+    let itemsInRow = 0;
 
-  for (let i = 0; i < data.length; i++) {
-    let item = data[i];
-    if (row === 0 || count % 4 === 0) {
-      itemsInRow = 0;
-      console.log("new row")
-      row++;
-      $(".modal-icons").append(
-        "<div class='flex-container row-" + row + "'></div>"
+    for (let i = 0; i < data.length; i++) {
+      let item = data[i];
+      if (row === 0 || count % 4 === 0) {
+        itemsInRow = 0;
+        row++;
+        $(".modal-icons").append(
+          "<div class='flex-container row-" + row + "'></div>"
+        );
+      }
+
+      count++;
+      itemsInRow++;
+
+      let icon = "<i class='" + item.icon + "'></i>";
+
+      $(".row-" + row).append(
+        "<div class='flex'><a href='" +
+          item.url +
+          "' target='_blank' title='" +
+          item.title +
+          "'>" +
+          icon +
+          "</a></div>"
       );
     }
-    console.log(item.title);
 
-    count++;
-    itemsInRow++;
+    // If itemsInRow < 4, add blank items to fill up flexbox
+    for (let i = 0; i < 4 - itemsInRow; i++) {
+      $(".row-" + row).append("<div class='flex'></div>");
+    }
+  };
 
-    let icon = "<i class='" + item.icon + "'></i>";
-
-    $(".row-" + row).append(
-      "<div class='flex'><a href='" +
-        item.url +
-        "' target='_blank' title='" +
-        item.title +
-        "'>" +
-        icon +
-        "</a></div>"
-    );
-
-  }
-
-  // If itemsInRow < 4, add blank items to fill up flexbox
-  for (let i = 0; i < 4 - itemsInRow; i++) {
-    $(".row-" + row).append(
-      "<div class='flex'></div>"
-    );
-  }
+  addIcons(data);
 
   // TODO check for cookie / local storage indicating icons to load
 
   $("textarea").html(JSON.stringify(data, null, 2));
 
   $("#settings-icon").click(function() {
-    console.log(data);
     $("#form-container").show();
   });
-  $("form").submit(function() {
-    alert("Submitted");
+  $("form").submit(function(e) {
+    e.preventDefault(); // don't refresh page while testing
+    let userData = $("textarea").html();
+    console.log(userData);
   });
 });
