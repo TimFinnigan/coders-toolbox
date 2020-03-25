@@ -39,17 +39,22 @@ $(document).ready(function() {
 
   let row = 0; // 4 icons per row
   let count = 0;
+  let itemsInRow = 0;
 
   for (let i = 0; i < data.length; i++) {
     let item = data[i];
-    console.log(item);
     if (row === 0 || count % 4 === 0) {
+      itemsInRow = 0;
+      console.log("new row")
       row++;
       $(".modal-icons").append(
         "<div class='flex-container row-" + row + "'></div>"
       );
     }
+    console.log(item.title);
+
     count++;
+    itemsInRow++;
 
     let icon = "<i class='" + item.icon + "'></i>";
 
@@ -61,6 +66,14 @@ $(document).ready(function() {
         "'>" +
         icon +
         "</a></div>"
+    );
+
+  }
+
+  // If itemsInRow < 4, add blank items to fill up flexbox
+  for (let i = 0; i < 4 - itemsInRow; i++) {
+    $(".row-" + row).append(
+      "<div class='flex'></div>"
     );
   }
 
