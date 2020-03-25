@@ -64,11 +64,13 @@ img {
   width: 100px;
 }
 
-.flex:hover, #settings-icon:hover {
+.flex:hover,
+#settings-icon:hover,
+#close-icon:hover {
   opacity: 0.4;
 }
 
-.flex i {
+.flex i, form i{
   font-size: 40px;
   color: #2f5876;
 }
@@ -85,7 +87,16 @@ img {
   vertical-align: top;
 }
 
-#settings-icon:hover {
+#close-icon {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 18px;
+  margin-left: 5px;
+  vertical-align: top;
+}
+
+#settings-icon:hover,
+#close-icon:hover {
   cursor: pointer;
 }
 
