@@ -74,7 +74,15 @@ $(document).ready(function() {
     }
   };
 
-  addIcons(defaultData);
+  if (localStorage.getItem("userData")) {
+    console.log(localStorage.getItem("userData"));
+    let data = localStorage.getItem("userData");
+    $("textarea").html(data, null, 2);
+    addIcons(JSON.parse(data));
+  } else {
+    addIcons(defaultData);
+    $("textarea").html(JSON.stringify(defaultData, null, 2));
+  }
 
   const isValidJSONString = function(str) {
     try {
@@ -88,8 +96,6 @@ $(document).ready(function() {
 
   // TODO check for cookie / local storage indicating icons to load
 
-  $("textarea").html(JSON.stringify(defaultData, null, 2));
-
   $("#settings-icon").click(function() {
     $("#form-container").show();
   });
@@ -97,6 +103,7 @@ $(document).ready(function() {
     e.preventDefault(); // don't refresh page while testing
     let userData = $("textarea").val();
     if (isValidJSONString(userData)) {
+      localStorage.setItem("userData", userData);
       $(".flex-container").remove();
       console.log(userData);
       addIcons(JSON.parse(userData));
