@@ -76,6 +76,16 @@ $(document).ready(function() {
 
   addIcons(defaultData);
 
+  const isValidJSONString = function(str) {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      alert("Invalid JSON");
+      return false;
+    }
+    return true;
+  };
+
   // TODO check for cookie / local storage indicating icons to load
 
   $("textarea").html(JSON.stringify(defaultData, null, 2));
@@ -85,9 +95,11 @@ $(document).ready(function() {
   });
   $("form").submit(function(e) {
     e.preventDefault(); // don't refresh page while testing
-    $(".flex-container").remove();
     let userData = $("textarea").val();
-    console.log(userData);
-    addIcons(JSON.parse(userData));
+    if (isValidJSONString(userData)) {
+      $(".flex-container").remove();
+      console.log(userData);
+      addIcons(JSON.parse(userData));
+    }
   });
 });
