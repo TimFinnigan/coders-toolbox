@@ -9,6 +9,26 @@ $(document).ready(function() {
       icon: "fa fa-stack-overflow",
       title: "Stack Overflow",
       url: "https://www.stackoverflow.com"
+    },
+    {
+      icon: "fa fa-codepen",
+      title: "CodePen",
+      url: "https://www.codepen.io"
+    },
+    {
+      icon: "fa fa-twitter",
+      title: "Twitter",
+      url: "https://www.stackoverflow.com"
+    },
+    {
+      icon: "fa fa-hacker-news",
+      title: "Hacker News",
+      url: "https://news.ycombinator.com/"
+    },
+    {
+      icon: "fa fa-reddit",
+      title: "Reddit",
+      url: "https://www.reddit.com"
     }
   ];
 
