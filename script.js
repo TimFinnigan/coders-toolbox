@@ -24,10 +24,18 @@ $(document).ready(function() {
       );
     }
 
-    $(".row-" + row).append(JSON.stringify(item));
+    let icon = "<i class='" + item.icon + "'></i>";
 
+    $(".row-" + row).append(
+      "<div class='flex'><a href='" +
+        item.url +
+        "' target='_blank' title='" +
+        item.title +
+        "'>" +
+        icon +
+        "</a></div>"
+    );
   }
-
 
   // TODO check for cookie / local storage indicating icons to load
 
