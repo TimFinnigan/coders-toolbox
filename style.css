@@ -64,7 +64,7 @@ img {
   width: 100px;
 }
 
-.flex:hover {
+.flex:hover, #settings-icon:hover {
   opacity: 0.4;
 }
 
@@ -78,6 +78,8 @@ img {
 }
 
 #settings-icon {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
   font-size: 18px;
   margin: 5px 0px 0px 5px;
   vertical-align: top;
