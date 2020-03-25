@@ -5,10 +5,10 @@ body {
   width: 340px;
   padding: 0px;
   margin: 0px;
+  font-family: "Baloo 2", monospace;
 }
 
 h1 {
-  font-family: "Baloo 2", monospace;
   font-size: 35px;
   font-weight: 400;
   color: #2f5876;
@@ -85,4 +85,18 @@ img {
 
 #settings-icon:hover {
   cursor: pointer;
+}
+
+#form-container {
+  padding: 5px;
+}
+
+form textarea {
+  border: 1px solid lightgrey;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+form input {
+  margin-left: 5px;
 }
