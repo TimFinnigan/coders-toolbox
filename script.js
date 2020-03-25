@@ -4,6 +4,9 @@ $(document).ready(function() {
     title: "GitHub",
     url: "https://www.github.com"
   };
+
+  $("textarea").html(JSON.stringify(data, null, 2));
+
   $("#settings-icon").click(function() {
     console.log(data);
     $("#form-container").show();
