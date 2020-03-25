@@ -85,7 +85,9 @@ $(document).ready(function() {
   });
   $("form").submit(function(e) {
     e.preventDefault(); // don't refresh page while testing
+    $(".modal-icons").empty();
     let userData = $("textarea").html();
     console.log(userData);
+    addIcons(JSON.parse(userData));
   });
 });

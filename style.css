@@ -97,8 +97,14 @@ form textarea {
   border: 1px solid lightgrey;
   margin: 5px;
   border-radius: 5px;
+  height: 200px;
 }
 
 form input {
   margin-left: 5px;
+}
+
+form a {
+  color: steelblue !important;
+  text-decoration: underline !important;
 }
