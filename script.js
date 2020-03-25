@@ -12,6 +12,23 @@ $(document).ready(function() {
     }
   ];
 
+  let row = 0; // 4 icons per row
+
+  for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    console.log(item);
+    if (row === 0 || item % 4 === 0) {
+      row++;
+      $(".modal-icons").append(
+        "<div class='flex-container row-" + row + "'></div>"
+      );
+    }
+
+    $(".row-" + row).append(JSON.stringify(item));
+
+  }
+
+
   // TODO check for cookie / local storage indicating icons to load
 
   $("textarea").html(JSON.stringify(data, null, 2));
