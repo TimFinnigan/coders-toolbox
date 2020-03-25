@@ -71,3 +71,13 @@ img {
   font-size: 40px;
   color: #2f5876;
 }
+
+#toolbox-icon {
+  vertical-align: middle;
+}
+
+#settings-icon {
+  font-size: 18px;
+  margin: 5px 0px 0px 25px;
+  vertical-align: top;
+}
