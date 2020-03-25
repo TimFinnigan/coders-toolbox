@@ -29,20 +29,27 @@ $(document).ready(function() {
       icon: "fa fa-reddit",
       title: "Reddit",
       url: "https://www.reddit.com"
+    } ,
+    {
+      icon: "fa fa-jsfiddle",
+      title: "JSFiddle",
+      url: "https://www.jsfiddle.net"
     }
   ];
 
   let row = 0; // 4 icons per row
+  let count = 0;
 
   for (let i = 0; i < data.length; i++) {
     let item = data[i];
     console.log(item);
-    if (row === 0 || item % 4 === 0) {
+    if (row === 0 || count % 4 === 0) {
       row++;
       $(".modal-icons").append(
         "<div class='flex-container row-" + row + "'></div>"
       );
     }
+    count++;
 
     let icon = "<i class='" + item.icon + "'></i>";
 
