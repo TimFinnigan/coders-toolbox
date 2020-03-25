@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  let data = [
+  let defaultData = [
     {
       icon: "fa fa-github",
       title: "GitHub",
@@ -74,19 +74,19 @@ $(document).ready(function() {
     }
   };
 
-  addIcons(data);
+  addIcons(defaultData);
 
   // TODO check for cookie / local storage indicating icons to load
 
-  $("textarea").html(JSON.stringify(data, null, 2));
+  $("textarea").html(JSON.stringify(defaultData, null, 2));
 
   $("#settings-icon").click(function() {
     $("#form-container").show();
   });
   $("form").submit(function(e) {
     e.preventDefault(); // don't refresh page while testing
-    $(".modal-icons").empty();
-    let userData = $("textarea").html();
+    $(".flex-container").remove();
+    let userData = $("textarea").val();
     console.log(userData);
     addIcons(JSON.parse(userData));
   });
