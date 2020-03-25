@@ -2,7 +2,7 @@ html,
 body {
   font-size: 14px;
   min-height: 180px;
-  width: 400px;
+  width: 340px;
   padding: 0px;
   margin: 0px;
 }
@@ -55,6 +55,7 @@ img {
 .flex-container {
   display: flex;
   padding: 10px 22px;
+  margin-left: 25px;
 }
 
 .flex {
@@ -78,6 +79,6 @@ img {
 
 #settings-icon {
   font-size: 18px;
-  margin: 5px 0px 0px 25px;
+  margin: 5px 0px 0px 5px;
   vertical-align: top;
 }
