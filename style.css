@@ -2,15 +2,18 @@ html,
 body {
   font-size: 14px;
   min-height: 180px;
-  width: 270px;
+  width: 400px;
+  padding: 0px;
+  margin: 0px;
 }
 
 h1 {
   font-family: "Baloo 2", monospace;
   font-size: 35px;
   font-weight: 400;
-  margin: 0;
   color: #2f5876;
+  text-align: left;
+  margin: 0px 0px 0px 25px;
 }
 
 a:link,
@@ -51,7 +54,7 @@ img {
 
 .flex-container {
   display: flex;
-  padding: 10px 5px 10px 30px;
+  padding: 10px 22px;
 }
 
 .flex {
