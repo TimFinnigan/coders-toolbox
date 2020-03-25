@@ -99,6 +99,11 @@ $(document).ready(function() {
   $("#settings-icon").click(function() {
     $("#form-container").show();
   });
+
+  $("#close-icon").click(function() {
+    $("#form-container").hide();
+  });
+
   $("form").submit(function(e) {
     e.preventDefault(); // don't refresh page while testing
     let userData = $("textarea").val();
