@@ -114,4 +114,9 @@ $(document).ready(function() {
       addIcons(JSON.parse(userData));
     }
   });
+
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
 });

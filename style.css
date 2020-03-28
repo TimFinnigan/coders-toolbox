@@ -70,7 +70,8 @@ img {
   opacity: 0.4;
 }
 
-.flex i, form i{
+.flex i,
+form i {
   font-size: 40px;
   color: #2f5876;
 }
@@ -118,4 +119,23 @@ form input {
 form a {
   color: steelblue !important;
   text-decoration: underline !important;
+}
+
+#sortable {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+  border: 1px solid grey;
+  margin: 100px;
+}
+#sortable li {
+  margin: 0 3px 3px 3px;
+  padding: 0.4em;
+  padding-left: 1.5em;
+  font-size: 1.4em;
+  height: 18px;
+}
+#sortable li span {
+  position: absolute;
+  margin-left: -1.3em;
 }
