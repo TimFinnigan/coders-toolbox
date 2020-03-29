@@ -128,13 +128,20 @@ form a {
   border: 1px solid grey;
   margin: 100px;
 }
+
+#sortable:hover {
+  cursor: pointer;
+}
+
 #sortable li {
   margin: 0 3px 3px 3px;
+  border-top: 1px solid lightgrey;
   padding: 0.4em;
   padding-left: 1.5em;
   font-size: 1.4em;
   height: 18px;
 }
+
 #sortable li span {
   position: absolute;
   margin-left: -1.3em;
