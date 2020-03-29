@@ -95,17 +95,15 @@ $(document).ready(function() {
     $("textarea").html(JSON.stringify(defaultData, null, 2));
   }
 
-  const isValidJSONString = function(str) {
-    try {
-      JSON.parse(str);
-    } catch (e) {
-      alert("Invalid JSON");
-      return false;
-    }
-    return true;
-  };
-
-  // TODO check for cookie / local storage indicating icons to load
+  // const isValidJSONString = function(str) {
+  //   try {
+  //     JSON.parse(str);
+  //   } catch (e) {
+  //     alert("Invalid JSON");
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   $("#settings-icon").click(function() {
     $("#form-container").show();
@@ -115,15 +113,24 @@ $(document).ready(function() {
     $("#form-container").hide();
   });
 
+  const readList = function() {
+    $( "#sortable li" ).each(function( index ) {
+      console.log( index + ": " + $( this ).text() );
+    });
+  }
+
   $("form").submit(function(e) {
-    e.preventDefault(); // don't refresh page while testing
-    let userData = $("textarea").val();
-    if (isValidJSONString(userData)) {
-      localStorage.setItem("userData", userData);
-      $(".flex-container").remove();
-      console.log(userData);
-      addIcons(JSON.parse(userData));
-    }
+    e.preventDefault(); // prevent page refresh
+    // Read list and get order
+    readList();
+
+    // let userData = $("textarea").val();
+    // if (isValidJSONString(userData)) {
+    //   localStorage.setItem("userData", userData);
+    //   $(".flex-container").remove();
+    //   console.log(userData);
+    //   addIcons(JSON.parse(userData));
+    // }
   });
 
   $(function() {
