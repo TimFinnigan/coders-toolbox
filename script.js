@@ -74,13 +74,24 @@ $(document).ready(function() {
     }
   };
 
+  const populateList = function(data) {
+    for (let i = 0; i < data.length; i++) {
+      let listItem = "<li>" + data[i].title;
+      let pencilIcon = "<i class='fa fa-pencil-square-o' aria-hidden='true'>";
+      listItem += pencilIcon + "</li>";
+      $("#sortable").append(listItem);
+    }
+  };
+
   if (localStorage.getItem("userData")) {
     console.log(localStorage.getItem("userData"));
     let data = localStorage.getItem("userData");
     $("textarea").html(data, null, 2);
     addIcons(JSON.parse(data));
+    populateList(JSON.parse(data));
   } else {
     addIcons(defaultData);
+    populateList(defaultData);
     $("textarea").html(JSON.stringify(defaultData, null, 2));
   }
 
@@ -115,8 +126,8 @@ $(document).ready(function() {
     }
   });
 
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
+  $(function() {
+    $("#sortable").sortable();
+    $("#sortable").disableSelection();
+  });
 });

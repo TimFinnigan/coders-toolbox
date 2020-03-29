@@ -126,7 +126,7 @@ form a {
   list-style-type: none;
   padding: 0;
   width: 200px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   margin-top: 75px;
   margin-left: 15px;
 }
@@ -137,12 +137,16 @@ form a {
 
 #sortable li {
   margin: 0 3px 3px 3px;
-  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
   padding: 0.4em;
   padding-left: 1em;
   font-size: 1.1em;
   height: 18px;
   color: #2f5876;
+}
+
+#sortable li:last-child {
+  border-bottom: none;
 }
 
 #sortable li span {
