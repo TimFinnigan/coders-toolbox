@@ -66,7 +66,8 @@ img {
 
 .flex:hover,
 #settings-icon:hover,
-#close-icon:hover {
+#close-icon:hover,
+.fa-pencil-square-o:hover {
   opacity: 0.4;
 }
 
@@ -92,8 +93,8 @@ form i {
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
   font-size: 18px;
-  margin-left: 5px;
   vertical-align: top;
+  float: right;
 }
 
 #settings-icon:hover,
@@ -124,9 +125,10 @@ form a {
 #sortable {
   list-style-type: none;
   padding: 0;
-  width: 60%;
+  width: 200px;
   border: 1px solid grey;
-  margin: 100px;
+  margin-top: 75px;
+  margin-left: 15px;
 }
 
 #sortable:hover {
@@ -137,9 +139,10 @@ form a {
   margin: 0 3px 3px 3px;
   border-top: 1px solid lightgrey;
   padding: 0.4em;
-  padding-left: 1.5em;
-  font-size: 1.4em;
+  padding-left: 1em;
+  font-size: 1.1em;
   height: 18px;
+  color: #2f5876;
 }
 
 #sortable li span {
@@ -149,4 +152,5 @@ form a {
 
 .fa-pencil-square-o {
   float: right;
+  color: #2f5876;
 }
