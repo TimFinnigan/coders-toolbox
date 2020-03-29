@@ -76,13 +76,13 @@ $(document).ready(function() {
 
   const populateList = function(data) {
     for (let i = 0; i < data.length; i++) {
-      let listItem = "<li>" + data[i].title;
+      let listItem = "<li id='row-" + i + "'>" + data[i].title;
 
       // Add unique IDs using index values
       let pencilIcon =
-        "<i id=item-" +
+        "<i id='item-" +
         i +
-        " class='fa fa-pencil-square-o' aria-hidden='true'></li>";
+        "' class='fa fa-pencil-square-o' aria-hidden='true'></li>";
 
       listItem += pencilIcon + "</li>";
 
@@ -120,20 +120,23 @@ $(document).ready(function() {
     $("#form-container").hide();
   });
 
-  const readList = function() {
+  const saveListOrder = function() {
     $("#sortable li").each(function(index) {
       console.log(index + ": " + $(this).text());
     });
   };
 
   $(".fa-pencil-square-o").click(function(e) {
-    console.log(e.target.id);
+    let editId = e.target.id;
+    editId = editId.split("-");
+    $("#row-" + editId[1]).hide();
+    $("#edit-form").show();
   });
 
   $("form").submit(function(e) {
     e.preventDefault(); // prevent page refresh
     // Read list and get order
-    readList();
+    saveListOrder();
 
     // let userData = $("textarea").val();
     // if (isValidJSONString(userData)) {

@@ -124,8 +124,7 @@ form a {
   list-style-type: none;
   padding: 0;
   width: 200px;
-  /* border: 1px solid grey; */
-  margin-top: 25px;
+  margin-top: 75px;
   margin-left: 15px;
 }
 
@@ -156,10 +155,10 @@ form a {
 }
 
 #edit-form {
+  display: none;
   padding: 5px;
   margin-top: 75px;
   margin-left: 25px;
-  width: 3540px;
 }
 
 #edit-titles,
@@ -169,4 +168,13 @@ form a {
 
 #edit-titles span {
   display: block;
+}
+
+#save-button {
+  margin-left: 0px;
+  margin-top: 5px;
+}
+
+#save-button:hover {
+ cursor: pointer;
 }
