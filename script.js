@@ -78,6 +78,10 @@ $(document).ready(function() {
     for (let i = 0; i < data.length; i++) {
       let listItem = "<li id='row-" + i + "'>" + data[i].title;
 
+      // add hidden elements for url and icon values
+      listItem += " <span hidden>" + data[i].url + "</span> ";
+      listItem += " <span hidden>" + data[i].icon + "</span> ";
+
       // Add unique IDs using index values
       let pencilIcon =
         "<i id='item-" +
