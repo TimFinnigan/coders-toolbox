@@ -103,6 +103,7 @@ form i {
 
 #form-container {
   padding: 5px;
+  position: relative;
 }
 
 form textarea {
@@ -155,10 +156,13 @@ form a {
 }
 
 #edit-form {
-  display: none;
+  /* display: none; */
   padding: 5px;
-  margin-top: 75px;
-  margin-left: 25px;
+  position: absolute;
+  background: white;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  left: 8%;
 }
 
 #edit-labels,

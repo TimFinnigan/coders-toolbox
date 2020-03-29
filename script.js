@@ -128,6 +128,36 @@ $(document).ready(function() {
     addIcons(newData);
   };
 
+  const showEditForm = function(rowNum) {
+    let editForm =
+      "   <div id='edit-form'> " +
+      "      <form> " +
+      "        <div id='edit-labels'> " +
+      "          <span>Title:</span> " +
+      "          <span>URL:</span> " +
+      "          <span>Icon:</span> " +
+      "        </div> " +
+      "        <div id='edit-inputs'> " +
+      "          <span> " +
+      "            <input id='edit-title' type='text' /> " +
+      "          </span> " +
+      "          <span> " +
+      "            <input id='edit-url' type='text' /> " +
+      "          </span> " +
+      "          <span> " +
+      "            <input id='edit-icon' type='text' /> " +
+      "          </span> " +
+      "        </div> " +
+      "        <br /> " +
+      "        <input id='save-button' type='submit' value='Save' /> " +
+      "      </form> " +
+      "    </div> ";
+
+      rowNum = rowNum * 10 + 10;
+      $("#form-container").append(editForm);
+      $("#edit-form").css("top", rowNum.toString() + "%");
+  };
+
   if (localStorage.getItem("userData")) {
     let data = localStorage.getItem("userData");
     console.log(data);
@@ -152,9 +182,9 @@ $(document).ready(function() {
     let editId = e.target.id;
     editId = editId.split("-");
     rowNum = editId[1];
-    alert("Row number " + rowNum + " was clicked");
-    $("#row-" + rowNum).hide();
-    $("#edit-form").show();
+    console.log("Row number " + rowNum + " was clicked");
+    // $("#row-" + rowNum).hide();
+    showEditForm(rowNum);
   });
 
   $("#edit-form form").submit(function(e) {
