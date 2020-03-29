@@ -99,7 +99,7 @@ $(document).ready(function() {
     try {
       JSON.parse(str);
     } catch (e) {
-      console.log("Invalid JSON");
+      alert("Invalid JSON");
       return false;
     }
     return true;
@@ -109,7 +109,7 @@ $(document).ready(function() {
     let newData = [];
 
     $("#sortable li").each(function(index) {
-      var $this = $(this);
+      let $this = $(this);
       newData.push({
         title: $this.find("span.title").text(),
         url: $this.find("span.url").text(),
@@ -118,17 +118,22 @@ $(document).ready(function() {
     });
 
     console.log(newData);
-    localStorage.setItem("userData", newData);
+
+    isValidJSONString(JSON.stringify(newData));
+
+    localStorage.setItem("userData", JSON.stringify(newData));
+
     $(".flex-container").remove();
+
     addIcons(newData);
   };
 
-  if (localStorage.getItem("userData") && isValidJSONString(localStorage.getItem("userData"))) {
-    // console.log(localStorage.getItem("userData"));
+  if (localStorage.getItem("userData")) {
     let data = localStorage.getItem("userData");
+    console.log(data);
     $("textarea").html(data, null, 2);
-    addIcons(data);
-    populateList(data);
+    addIcons(JSON.parse(data));
+    populateList(JSON.parse(data));
   } else {
     addIcons(defaultData);
     populateList(defaultData);
