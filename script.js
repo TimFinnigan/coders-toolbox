@@ -77,8 +77,15 @@ $(document).ready(function() {
   const populateList = function(data) {
     for (let i = 0; i < data.length; i++) {
       let listItem = "<li>" + data[i].title;
-      let pencilIcon = "<i class='fa fa-pencil-square-o' aria-hidden='true'>";
+
+      // Add unique IDs using index values
+      let pencilIcon =
+        "<i id=item-" +
+        i +
+        " class='fa fa-pencil-square-o' aria-hidden='true'></li>";
+
       listItem += pencilIcon + "</li>";
+
       $("#sortable").append(listItem);
     }
   };
@@ -114,10 +121,14 @@ $(document).ready(function() {
   });
 
   const readList = function() {
-    $( "#sortable li" ).each(function( index ) {
-      console.log( index + ": " + $( this ).text() );
+    $("#sortable li").each(function(index) {
+      console.log(index + ": " + $(this).text());
     });
-  }
+  };
+
+  $(".fa-pencil-square-o").click(function(e) {
+    console.log(e.target.id);
+  });
 
   $("form").submit(function(e) {
     e.preventDefault(); // prevent page refresh
