@@ -96,7 +96,8 @@ form i {
 }
 
 #settings-icon:hover,
-#close-icon:hover {
+#close-icon:hover,
+.fa-pencil-square-o:hover {
   cursor: pointer;
 }
 
@@ -124,12 +125,11 @@ form a {
   list-style-type: none;
   padding: 0;
   width: 200px;
-  margin-top: 75px;
   margin-left: 15px;
 }
 
 #sortable:hover {
-  cursor: pointer;
+  cursor: ns-resize;
 }
 
 #sortable li {
