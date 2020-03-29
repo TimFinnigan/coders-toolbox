@@ -91,7 +91,7 @@ $(document).ready(function() {
   };
 
   if (localStorage.getItem("userData")) {
-    console.log(localStorage.getItem("userData"));
+    // console.log(localStorage.getItem("userData"));
     let data = localStorage.getItem("userData");
     $("textarea").html(data, null, 2);
     addIcons(JSON.parse(data));
@@ -131,6 +131,13 @@ $(document).ready(function() {
     editId = editId.split("-");
     $("#row-" + editId[1]).hide();
     $("#edit-form").show();
+  });
+  
+  $("#edit-form form").submit(function(e) {
+    e.preventDefault(); // prevent page refresh
+    let title = $("#edit-title").val();
+    let url = $("#edit-url").val();
+    let icon = $("#edit-icon").val();
   });
 
   $("form").submit(function(e) {

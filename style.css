@@ -161,12 +161,13 @@ form a {
   margin-left: 25px;
 }
 
-#edit-titles,
+#edit-labels,
 #edit-inputs {
   display: inline-block;
 }
 
-#edit-titles span {
+#edit-labels span,
+#edit-inputs span {
   display: block;
 }
 
@@ -176,5 +177,5 @@ form a {
 }
 
 #save-button:hover {
- cursor: pointer;
+  cursor: pointer;
 }
