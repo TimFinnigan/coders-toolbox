@@ -76,11 +76,12 @@ $(document).ready(function() {
 
   const populateList = function(data) {
     for (let i = 0; i < data.length; i++) {
-      let listItem = "<li id='row-" + i + "'>" + data[i].title;
+      let listItem = "<li id='row-" + i + "'>";
 
-      // add hidden elements for url and icon values
-      listItem += " <span hidden>" + data[i].url + "</span> ";
-      listItem += " <span hidden>" + data[i].icon + "</span> ";
+      // add elements for url and icon values
+      listItem += " <span class='title' >" + data[i].title + "</span> ";
+      listItem += " <span class='url' hidden>" + data[i].url + "</span> ";
+      listItem += " <span class='icon' hidden>" + data[i].icon + "</span> ";
 
       // Add unique IDs using index values
       let pencilIcon =
@@ -94,33 +95,45 @@ $(document).ready(function() {
     }
   };
 
-  const saveListOrder = function() {
-    $("#sortable li").each(function(index) {
-      console.log(index + ": " + $(this).text());
-    });
+  const isValidJSONString = function(str) {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      console.log("Invalid JSON");
+      return false;
+    }
+    return true;
   };
 
-  if (localStorage.getItem("userData")) {
+  const saveListOrder = function() {
+    let newData = [];
+
+    $("#sortable li").each(function(index) {
+      var $this = $(this);
+      newData.push({
+        title: $this.find("span.title").text(),
+        url: $this.find("span.url").text(),
+        icon: $this.find("span.icon").text()
+      });
+    });
+
+    console.log(newData);
+    localStorage.setItem("userData", newData);
+    $(".flex-container").remove();
+    addIcons(newData);
+  };
+
+  if (localStorage.getItem("userData") && isValidJSONString(localStorage.getItem("userData"))) {
     // console.log(localStorage.getItem("userData"));
     let data = localStorage.getItem("userData");
     $("textarea").html(data, null, 2);
-    addIcons(JSON.parse(data));
-    populateList(JSON.parse(data));
+    addIcons(data);
+    populateList(data);
   } else {
     addIcons(defaultData);
     populateList(defaultData);
     $("textarea").html(JSON.stringify(defaultData, null, 2));
   }
-
-  // const isValidJSONString = function(str) {
-  //   try {
-  //     JSON.parse(str);
-  //   } catch (e) {
-  //     alert("Invalid JSON");
-  //     return false;
-  //   }
-  //   return true;
-  // };
 
   $("#settings-icon").click(function() {
     $("#form-container").show();
