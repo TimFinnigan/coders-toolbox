@@ -90,6 +90,12 @@ $(document).ready(function() {
     }
   };
 
+  const saveListOrder = function() {
+    $("#sortable li").each(function(index) {
+      console.log(index + ": " + $(this).text());
+    });
+  };
+
   if (localStorage.getItem("userData")) {
     // console.log(localStorage.getItem("userData"));
     let data = localStorage.getItem("userData");
@@ -120,19 +126,15 @@ $(document).ready(function() {
     $("#form-container").hide();
   });
 
-  const saveListOrder = function() {
-    $("#sortable li").each(function(index) {
-      console.log(index + ": " + $(this).text());
-    });
-  };
-
   $(".fa-pencil-square-o").click(function(e) {
     let editId = e.target.id;
     editId = editId.split("-");
-    $("#row-" + editId[1]).hide();
+    rowNum = editId[1];
+    alert("Row number " + rowNum + " was clicked");
+    $("#row-" + rowNum).hide();
     $("#edit-form").show();
   });
-  
+
   $("#edit-form form").submit(function(e) {
     e.preventDefault(); // prevent page refresh
     let title = $("#edit-title").val();
@@ -154,8 +156,11 @@ $(document).ready(function() {
     // }
   });
 
-  $(function() {
-    $("#sortable").sortable();
-    $("#sortable").disableSelection();
+  $("#sortable").sortable();
+  $("#sortable").disableSelection();
+  $("#sortable").sortable({
+    stop: function(ui, event) {
+      saveListOrder();
+    }
   });
 });
