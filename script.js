@@ -77,6 +77,7 @@ $(document).ready(function() {
   };
 
   const populateList = function(data) {
+    $("#sortable").empty();
     for (let i = 0; i < data.length; i++) {
       let listItem = "<li id='row-" + i + "'>";
 
@@ -95,6 +96,15 @@ $(document).ready(function() {
 
       $("#sortable").append(listItem);
     }
+
+    $(".fa-pencil-square-o").click(function(e) {
+      let editId = e.target.id;
+      editId = editId.split("-");
+      rowNum = editId[1];
+      console.log("Row number " + rowNum + " was clicked");
+      // $("#row-" + rowNum).hide();
+      showEditForm(rowNum);
+    });
   };
 
   const isValidJSONString = function(str) {
@@ -172,7 +182,10 @@ $(document).ready(function() {
     $("#edit-form form").submit(function(e) {
       e.preventDefault(); // prevent page refresh
 
-      if (localStorage.getItem("userData") && localStorage.getItem("userData") !== "[]") {
+      if (
+        localStorage.getItem("userData") &&
+        localStorage.getItem("userData") !== "[]"
+      ) {
         let data = localStorage.getItem("userData");
         data = JSON.parse(data);
         console.log(data[rowNum]);
@@ -181,20 +194,23 @@ $(document).ready(function() {
         data[rowNum].icon = $("#edit-icon").val();
         console.log(data);
         addIcons(data);
-        // populateList(data);
+        populateList(data);
       } else {
         defaultData[rowNum].title = $("#edit-title").val();
         defaultData[rowNum].url = $("#edit-url").val();
         defaultData[rowNum].icon = $("#edit-icon").val();
         addIcons(defaultData);
-        // populateList(defaultData);
+        populateList(defaultData);
       }
     });
   };
 
-  if (localStorage.getItem("userData") && localStorage.getItem("userData") !== "[]") {
+  if (
+    localStorage.getItem("userData") &&
+    localStorage.getItem("userData") !== "[]"
+  ) {
     let data = localStorage.getItem("userData");
-    console.log("Getting data from localStorage: " +  data);
+    console.log("Getting data from localStorage: " + data);
     addIcons(JSON.parse(data));
     populateList(JSON.parse(data));
   } else {
@@ -209,15 +225,6 @@ $(document).ready(function() {
 
   $("#close-icon").click(function() {
     $("#form-container").hide();
-  });
-
-  $(".fa-pencil-square-o").click(function(e) {
-    let editId = e.target.id;
-    editId = editId.split("-");
-    rowNum = editId[1];
-    console.log("Row number " + rowNum + " was clicked");
-    // $("#row-" + rowNum).hide();
-    showEditForm(rowNum);
   });
 
   // $("form").submit(function(e) {
