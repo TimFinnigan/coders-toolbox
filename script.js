@@ -97,10 +97,6 @@ $(document).ready(function() {
       $("#sortable").append(listItem);
     }
 
-    $("#form-container").append(
-      "<span id='add-item'><i class='fa fa-plus'></i>Add new item...</span>"
-    );
-
     $(".fa-pencil-square-o").click(function(e) {
       let editId = e.target.id;
       editId = editId.split("-");
@@ -258,6 +254,10 @@ $(document).ready(function() {
   $("#add-item").click(function() {
     alert("add item");
   });
+
+  $("#form-container").append(
+    "<span id='add-item'><i class='fa fa-plus'></i>Add new item...</span>"
+  );
 
   // Hide edit form when clicking outside of it
   $(document).mouseup(function(e) {
