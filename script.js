@@ -153,9 +153,20 @@ $(document).ready(function() {
       "      </form> " +
       "    </div> ";
 
-    rowNum = rowNum * 10 + 15;
     $("#form-container").append(editForm);
-    $("#edit-form").css("top", rowNum.toString() + "%");
+
+    // Calculate position based on list element
+    let pct = rowNum * 10 + 15;
+    $("#edit-form").css("top", pct.toString() + "%");
+
+    let rowData = [];
+    $("#row-" + rowNum + " span").each(function(index) {
+      rowData.push($(this)[0].innerText);
+    });
+
+    $("#edit-title").val(rowData[0]);
+    $("#edit-url").val(rowData[1]);
+    $("#edit-icon").val(rowData[2]);
   };
 
   if (localStorage.getItem("userData")) {
