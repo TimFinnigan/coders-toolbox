@@ -204,6 +204,8 @@ $(document).ready(function() {
         populateList(defaultData);
         saveListOrder();
       }
+
+      $("#edit-form").remove();
     });
   };
 
