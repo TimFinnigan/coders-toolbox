@@ -153,9 +153,9 @@ $(document).ready(function() {
       "      </form> " +
       "    </div> ";
 
-      rowNum = rowNum * 10 + 10;
-      $("#form-container").append(editForm);
-      $("#edit-form").css("top", rowNum.toString() + "%");
+    rowNum = rowNum * 10 + 15;
+    $("#form-container").append(editForm);
+    $("#edit-form").css("top", rowNum.toString() + "%");
   };
 
   if (localStorage.getItem("userData")) {
@@ -213,6 +213,14 @@ $(document).ready(function() {
   $("#sortable").sortable({
     stop: function(ui, event) {
       saveListOrder();
+    }
+  });
+
+  // Hide edit form when clicking outside of it
+  $(document).mouseup(function(e) {
+    var container = $("#edit-form");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      container.remove();
     }
   });
 });
