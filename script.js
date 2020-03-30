@@ -195,12 +195,14 @@ $(document).ready(function() {
         console.log(data);
         addIcons(data);
         populateList(data);
+        saveListOrder();
       } else {
         defaultData[rowNum].title = $("#edit-title").val();
         defaultData[rowNum].url = $("#edit-url").val();
         defaultData[rowNum].icon = $("#edit-icon").val();
         addIcons(defaultData);
         populateList(defaultData);
+        saveListOrder();
       }
     });
   };
