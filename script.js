@@ -167,6 +167,25 @@ $(document).ready(function() {
     $("#edit-title").val(rowData[0]);
     $("#edit-url").val(rowData[1]);
     $("#edit-icon").val(rowData[2]);
+
+    $("#edit-form form").submit(function(e) {
+      e.preventDefault(); // prevent page refresh
+      alert('updating data...')
+      let title = $("#edit-title").val();
+      let url = $("#edit-url").val();
+      let icon = $("#edit-icon").val();
+      // if (localStorage.getItem("userData")) {
+      //   let data = localStorage.getItem("userData");
+      //   console.log(data);
+      //   $("textarea").html(data, null, 2);
+      //   addIcons(JSON.parse(data));
+      //   populateList(JSON.parse(data));
+      // } else {
+      //   addIcons(defaultData);
+      //   populateList(defaultData);
+      //   $("textarea").html(JSON.stringify(defaultData, null, 2));
+      // }
+    });
   };
 
   if (localStorage.getItem("userData")) {
@@ -198,26 +217,19 @@ $(document).ready(function() {
     showEditForm(rowNum);
   });
 
-  $("#edit-form form").submit(function(e) {
-    e.preventDefault(); // prevent page refresh
-    let title = $("#edit-title").val();
-    let url = $("#edit-url").val();
-    let icon = $("#edit-icon").val();
-  });
+  // $("form").submit(function(e) {
+  //   e.preventDefault(); // prevent page refresh
+  //   // Read list and get order
+  //   saveListOrder();
 
-  $("form").submit(function(e) {
-    e.preventDefault(); // prevent page refresh
-    // Read list and get order
-    saveListOrder();
-
-    // let userData = $("textarea").val();
-    // if (isValidJSONString(userData)) {
-    //   localStorage.setItem("userData", userData);
-    //   $(".flex-container").remove();
-    //   console.log(userData);
-    //   addIcons(JSON.parse(userData));
-    // }
-  });
+  //   // let userData = $("textarea").val();
+  //   // if (isValidJSONString(userData)) {
+  //   //   localStorage.setItem("userData", userData);
+  //   //   $(".flex-container").remove();
+  //   //   console.log(userData);
+  //   //   addIcons(JSON.parse(userData));
+  //   // }
+  // });
 
   $("#sortable").sortable();
   $("#sortable").disableSelection();
