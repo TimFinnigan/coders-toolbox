@@ -38,6 +38,8 @@ $(document).ready(function() {
   ];
 
   const addIcons = function(data) {
+    console.log("Adding data " + data);
+    $(".modal-icons").empty();
     let row = 0; // 4 icons per row
     let count = 0;
     let itemsInRow = 0;
@@ -117,14 +119,13 @@ $(document).ready(function() {
       });
     });
 
-    console.log(newData);
+    console.log("Saving list order: " + newData);
 
     isValidJSONString(JSON.stringify(newData));
 
     localStorage.setItem("userData", JSON.stringify(newData));
 
     $(".flex-container").remove();
-
     addIcons(newData);
   };
 
@@ -170,28 +171,30 @@ $(document).ready(function() {
 
     $("#edit-form form").submit(function(e) {
       e.preventDefault(); // prevent page refresh
-      alert('updating data...')
-      let title = $("#edit-title").val();
-      let url = $("#edit-url").val();
-      let icon = $("#edit-icon").val();
-      // if (localStorage.getItem("userData")) {
-      //   let data = localStorage.getItem("userData");
-      //   console.log(data);
-      //   $("textarea").html(data, null, 2);
-      //   addIcons(JSON.parse(data));
-      //   populateList(JSON.parse(data));
-      // } else {
-      //   addIcons(defaultData);
-      //   populateList(defaultData);
-      //   $("textarea").html(JSON.stringify(defaultData, null, 2));
-      // }
+
+      if (localStorage.getItem("userData") && localStorage.getItem("userData") !== "[]") {
+        let data = localStorage.getItem("userData");
+        data = JSON.parse(data);
+        console.log(data[rowNum]);
+        data[rowNum].title = $("#edit-title").val();
+        data[rowNum].url = $("#edit-url").val();
+        data[rowNum].icon = $("#edit-icon").val();
+        console.log(data);
+        addIcons(data);
+        // populateList(data);
+      } else {
+        defaultData[rowNum].title = $("#edit-title").val();
+        defaultData[rowNum].url = $("#edit-url").val();
+        defaultData[rowNum].icon = $("#edit-icon").val();
+        addIcons(defaultData);
+        // populateList(defaultData);
+      }
     });
   };
 
-  if (localStorage.getItem("userData")) {
+  if (localStorage.getItem("userData") && localStorage.getItem("userData") !== "[]") {
     let data = localStorage.getItem("userData");
-    console.log(data);
-    $("textarea").html(data, null, 2);
+    console.log("Getting data from localStorage: " +  data);
     addIcons(JSON.parse(data));
     populateList(JSON.parse(data));
   } else {
