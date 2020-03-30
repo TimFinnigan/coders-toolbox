@@ -183,3 +183,11 @@ form a {
 #save-button:hover {
   cursor: pointer;
 }
+
+#add-item {
+  margin-left: 15px;
+}
+
+#add-item i {
+  margin-right: 5px;
+}

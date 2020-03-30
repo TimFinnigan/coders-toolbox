@@ -97,6 +97,8 @@ $(document).ready(function() {
       $("#sortable").append(listItem);
     }
 
+    $("#form-container").append("<span id='add-item'><i class='fa fa-plus'></i>Add new item...</span>");
+
     $(".fa-pencil-square-o").click(function(e) {
       let editId = e.target.id;
       editId = editId.split("-");
