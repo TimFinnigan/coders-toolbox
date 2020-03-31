@@ -63,7 +63,6 @@ $(document).ready(function() {
     "    </div> ";
 
   const addIcons = function(data) {
-    console.log("Adding data " + data);
     $(".modal-icons").empty();
     let row = 0; // 4 icons per row
     let count = 0;
@@ -132,11 +131,9 @@ $(document).ready(function() {
           rowNum = data.length;
           data.push([]);
         }
-        console.log(data[rowNum]);
         data[rowNum].title = $("#edit-title").val();
         data[rowNum].url = $("#edit-url").val();
         data[rowNum].icon = $("#edit-icon").val();
-        console.log(data);
         addIcons(data);
         populateList(data);
         saveListOrder();
@@ -202,7 +199,6 @@ $(document).ready(function() {
       let editId = e.target.id;
       editId = editId.split("-");
       rowNum = editId[1];
-      console.log("Row number " + rowNum + " was clicked");
       // $("#row-" + rowNum).hide();
       showEditForm(editForm, rowNum);
     });
@@ -230,8 +226,6 @@ $(document).ready(function() {
       });
     });
 
-    console.log("Saving list order: " + newData);
-
     isValidJSONString(JSON.stringify(newData));
 
     localStorage.setItem("userData", JSON.stringify(newData));
@@ -245,7 +239,6 @@ $(document).ready(function() {
     localStorage.getItem("userData") !== "[]"
   ) {
     let data = localStorage.getItem("userData");
-    console.log("Getting data from localStorage: " + data);
     addIcons(JSON.parse(data));
     populateList(JSON.parse(data));
   } else {
@@ -261,20 +254,6 @@ $(document).ready(function() {
   $("#close-icon").click(function() {
     $("#form-container").hide();
   });
-
-  // $("form").submit(function(e) {
-  //   e.preventDefault(); // prevent page refresh
-  //   // Read list and get order
-  //   saveListOrder();
-
-  //   // let userData = $("textarea").val();
-  //   // if (isValidJSONString(userData)) {
-  //   //   localStorage.setItem("userData", userData);
-  //   //   $(".flex-container").remove();
-  //   //   console.log(userData);
-  //   //   addIcons(JSON.parse(userData));
-  //   // }
-  // });
 
   $("#sortable").sortable();
   $("#sortable").disableSelection();
