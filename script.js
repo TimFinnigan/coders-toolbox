@@ -163,7 +163,7 @@ $(document).ready(function() {
       addIcons(data);
       populateList(data);
       saveListOrder();
-      
+
       $("#edit-form").remove();
     });
   };
@@ -193,7 +193,6 @@ $(document).ready(function() {
       let editId = e.target.id;
       editId = editId.split("-");
       rowNum = editId[1];
-      // $("#row-" + rowNum).hide();
       showEditForm(editForm, rowNum);
     });
   };
@@ -228,6 +227,7 @@ $(document).ready(function() {
     addIcons(newData);
   };
 
+  // Begin process of adding data to display
   if (
     localStorage.getItem("userData") &&
     localStorage.getItem("userData") !== "[]"
