@@ -34,6 +34,11 @@ $(document).ready(function() {
       icon: "fa fa-jsfiddle",
       title: "JSFiddle",
       url: "https://www.jsfiddle.net"
+    },
+    {
+      icon: "fa fa-dribbble",
+      title: "Dribbble",
+      url: "https://www.dribbble.com"
     }
   ];
 
