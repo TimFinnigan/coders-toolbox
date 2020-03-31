@@ -58,6 +58,7 @@ $(document).ready(function() {
     "        </div> " +
     "        <br /> " +
     "        <input id='save-button' type='submit' value='Save' /> " +
+    "        <button id='delete-item'>Delete</button> " +
     "      </form> " +
     "    </div> ";
 
@@ -100,8 +101,11 @@ $(document).ready(function() {
     }
   };
 
-  const showEditForm = function(editForm, rowNum, newItem) {
+  const showEditForm = function(editForm, rowNum, addItem) {
     $("#form-container").append(editForm);
+    if (addItem) {
+      $("#delete-item").hide();
+    }
 
     // Calculate position based on list element
     let pct = rowNum * 10 + 15;
@@ -125,8 +129,10 @@ $(document).ready(function() {
       ) {
         let data = localStorage.getItem("userData");
         data = JSON.parse(data);
-        if (newItem) rowNum = data.length;
-        data.push([]);
+        if (addItem) {
+          rowNum = data.length;
+          data.push([]);
+        }
         console.log(data[rowNum]);
         data[rowNum].title = $("#edit-title").val();
         data[rowNum].url = $("#edit-url").val();
@@ -136,7 +142,10 @@ $(document).ready(function() {
         populateList(data);
         saveListOrder();
       } else {
-        if (newItem) rowNum = defaultData.length;
+        if (addItem) {
+          rowNum = data.length;
+          data.push([]);
+        }
         defaultData[rowNum].title = $("#edit-title").val();
         defaultData[rowNum].url = $("#edit-url").val();
         defaultData[rowNum].icon = $("#edit-icon").val();
@@ -145,6 +154,26 @@ $(document).ready(function() {
         saveListOrder();
       }
 
+      $("#edit-form").remove();
+    });
+
+    $("#delete-item").click(function() {
+      if (
+        localStorage.getItem("userData") &&
+        localStorage.getItem("userData") !== "[]"
+      ) {
+        let data = localStorage.getItem("userData");
+        data = JSON.parse(data);
+        data.splice(rowNum, 1);
+        addIcons(data);
+        populateList(data);
+        saveListOrder();
+      } else {
+        defaultData.splice(rowNum, 1);
+        addIcons(defaultData);
+        populateList(defaultData);
+        saveListOrder();
+      }
       $("#edit-form").remove();
     });
   };
@@ -261,7 +290,7 @@ $(document).ready(function() {
   );
 
   $("#add-item").click(function() {
-    showEditForm(editForm, null, "newItem");
+    showEditForm(editForm, null, true);
   });
 
   // Hide edit form when clicking outside of it
