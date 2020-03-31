@@ -105,12 +105,11 @@ $(document).ready(function() {
     $("#form-container").append(editForm);
     if (addItem) {
       $("#delete-item").hide();
+    } else {
+      // Calculate position based on list element
+      let offset = $("#row-" + rowNum).offset();
+      $("#edit-form").css("top", offset.top - 25 + "px");
     }
-
-    // Calculate position based on list element
-    let offset = $("#row-" + rowNum).offset();
-
-    $("#edit-form").css("top", offset.top - 25 + "px");
 
     let rowData = [];
     $("#row-" + rowNum + " span").each(function(index) {
@@ -123,7 +122,6 @@ $(document).ready(function() {
 
     $("#edit-form form").submit(function(e) {
       e.preventDefault(); // prevent page refresh
-
       if (
         localStorage.getItem("userData") &&
         localStorage.getItem("userData") !== "[]"
