@@ -12,6 +12,6 @@
     "default_popup": "toolbox.html"
   },
   "permissions": [
-    "activeTab"
+    ""
   ]
 }
