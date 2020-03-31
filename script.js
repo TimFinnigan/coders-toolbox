@@ -108,8 +108,9 @@ $(document).ready(function() {
     }
 
     // Calculate position based on list element
-    let pct = rowNum * 10 + 15;
-    $("#edit-form").css("top", pct.toString() + "%");
+    let offset = $("#row-" + rowNum).offset();
+
+    $("#edit-form").css("top", offset.top - 25 + "px");
 
     let rowData = [];
     $("#row-" + rowNum + " span").each(function(index) {
