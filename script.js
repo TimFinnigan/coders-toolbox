@@ -121,55 +121,49 @@ $(document).ready(function() {
 
     $("#edit-form form").submit(function(e) {
       e.preventDefault(); // prevent page refresh
+
+      let data = defaultData;
+
       if (
         localStorage.getItem("userData") &&
         localStorage.getItem("userData") !== "[]"
       ) {
-        let data = localStorage.getItem("userData");
+        data = localStorage.getItem("userData");
         data = JSON.parse(data);
-        if (addItem) {
-          rowNum = data.length;
-          data.push([]);
-        }
-        data[rowNum].title = $("#edit-title").val();
-        data[rowNum].url = $("#edit-url").val();
-        data[rowNum].icon = $("#edit-icon").val();
-        addIcons(data);
-        populateList(data);
-        saveListOrder();
-      } else {
-        if (addItem) {
-          rowNum = data.length;
-          data.push([]);
-        }
-        defaultData[rowNum].title = $("#edit-title").val();
-        defaultData[rowNum].url = $("#edit-url").val();
-        defaultData[rowNum].icon = $("#edit-icon").val();
-        addIcons(defaultData);
-        populateList(defaultData);
-        saveListOrder();
       }
+
+      if (addItem) {
+        rowNum = data.length;
+        data.push([]);
+      }
+
+      data[rowNum].title = $("#edit-title").val();
+      data[rowNum].url = $("#edit-url").val();
+      data[rowNum].icon = $("#edit-icon").val();
+      addIcons(data);
+      populateList(data);
+      saveListOrder();
 
       $("#edit-form").remove();
     });
 
-    $("#delete-item").click(function() {
+    $("#delete-item").click(function(e) {
+      e.preventDefault();
+
+      let data = defaultData;
+
       if (
         localStorage.getItem("userData") &&
         localStorage.getItem("userData") !== "[]"
       ) {
-        let data = localStorage.getItem("userData");
+        data = localStorage.getItem("userData");
         data = JSON.parse(data);
-        data.splice(rowNum, 1);
-        addIcons(data);
-        populateList(data);
-        saveListOrder();
-      } else {
-        defaultData.splice(rowNum, 1);
-        addIcons(defaultData);
-        populateList(defaultData);
-        saveListOrder();
       }
+      data.splice(rowNum, 1);
+      addIcons(data);
+      populateList(data);
+      saveListOrder();
+      
       $("#edit-form").remove();
     });
   };
