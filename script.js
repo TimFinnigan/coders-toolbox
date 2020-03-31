@@ -37,6 +37,30 @@ $(document).ready(function() {
     }
   ];
 
+  let editForm =
+    "   <div id='edit-form'> " +
+    "      <form> " +
+    "        <div id='edit-labels'> " +
+    "          <span>Title:</span> " +
+    "          <span>URL:</span> " +
+    "          <span>Icon:</span> " +
+    "        </div> " +
+    "        <div id='edit-inputs'> " +
+    "          <span> " +
+    "            <input id='edit-title' type='text' /> " +
+    "          </span> " +
+    "          <span> " +
+    "            <input id='edit-url' type='text' /> " +
+    "          </span> " +
+    "          <span> " +
+    "            <input id='edit-icon' type='text' /> " +
+    "          </span> " +
+    "        </div> " +
+    "        <br /> " +
+    "        <input id='save-button' type='submit' value='Save' /> " +
+    "      </form> " +
+    "    </div> ";
+
   const addIcons = function(data) {
     console.log("Adding data " + data);
     $(".modal-icons").empty();
@@ -76,6 +100,55 @@ $(document).ready(function() {
     }
   };
 
+  const showEditForm = function(editForm, rowNum, newItem) {
+    $("#form-container").append(editForm);
+
+    // Calculate position based on list element
+    let pct = rowNum * 10 + 15;
+    $("#edit-form").css("top", pct.toString() + "%");
+
+    let rowData = [];
+    $("#row-" + rowNum + " span").each(function(index) {
+      rowData.push($(this)[0].innerText);
+    });
+
+    $("#edit-title").val(rowData[0]);
+    $("#edit-url").val(rowData[1]);
+    $("#edit-icon").val(rowData[2]);
+
+    $("#edit-form form").submit(function(e) {
+      e.preventDefault(); // prevent page refresh
+
+      if (
+        localStorage.getItem("userData") &&
+        localStorage.getItem("userData") !== "[]"
+      ) {
+        let data = localStorage.getItem("userData");
+        data = JSON.parse(data);
+        if (newItem) rowNum = data.length;
+        data.push([]);
+        console.log(data[rowNum]);
+        data[rowNum].title = $("#edit-title").val();
+        data[rowNum].url = $("#edit-url").val();
+        data[rowNum].icon = $("#edit-icon").val();
+        console.log(data);
+        addIcons(data);
+        populateList(data);
+        saveListOrder();
+      } else {
+        if (newItem) rowNum = defaultData.length;
+        defaultData[rowNum].title = $("#edit-title").val();
+        defaultData[rowNum].url = $("#edit-url").val();
+        defaultData[rowNum].icon = $("#edit-icon").val();
+        addIcons(defaultData);
+        populateList(defaultData);
+        saveListOrder();
+      }
+
+      $("#edit-form").remove();
+    });
+  };
+
   const populateList = function(data) {
     $("#sortable").empty();
     for (let i = 0; i < data.length; i++) {
@@ -103,7 +176,7 @@ $(document).ready(function() {
       rowNum = editId[1];
       console.log("Row number " + rowNum + " was clicked");
       // $("#row-" + rowNum).hide();
-      showEditForm(rowNum);
+      showEditForm(editForm, rowNum);
     });
   };
 
@@ -137,76 +210,6 @@ $(document).ready(function() {
 
     $(".flex-container").remove();
     addIcons(newData);
-  };
-
-  const showEditForm = function(rowNum) {
-    let editForm =
-      "   <div id='edit-form'> " +
-      "      <form> " +
-      "        <div id='edit-labels'> " +
-      "          <span>Title:</span> " +
-      "          <span>URL:</span> " +
-      "          <span>Icon:</span> " +
-      "        </div> " +
-      "        <div id='edit-inputs'> " +
-      "          <span> " +
-      "            <input id='edit-title' type='text' /> " +
-      "          </span> " +
-      "          <span> " +
-      "            <input id='edit-url' type='text' /> " +
-      "          </span> " +
-      "          <span> " +
-      "            <input id='edit-icon' type='text' /> " +
-      "          </span> " +
-      "        </div> " +
-      "        <br /> " +
-      "        <input id='save-button' type='submit' value='Save' /> " +
-      "      </form> " +
-      "    </div> ";
-
-    $("#form-container").append(editForm);
-
-    // Calculate position based on list element
-    let pct = rowNum * 10 + 15;
-    $("#edit-form").css("top", pct.toString() + "%");
-
-    let rowData = [];
-    $("#row-" + rowNum + " span").each(function(index) {
-      rowData.push($(this)[0].innerText);
-    });
-
-    $("#edit-title").val(rowData[0]);
-    $("#edit-url").val(rowData[1]);
-    $("#edit-icon").val(rowData[2]);
-
-    $("#edit-form form").submit(function(e) {
-      e.preventDefault(); // prevent page refresh
-
-      if (
-        localStorage.getItem("userData") &&
-        localStorage.getItem("userData") !== "[]"
-      ) {
-        let data = localStorage.getItem("userData");
-        data = JSON.parse(data);
-        console.log(data[rowNum]);
-        data[rowNum].title = $("#edit-title").val();
-        data[rowNum].url = $("#edit-url").val();
-        data[rowNum].icon = $("#edit-icon").val();
-        console.log(data);
-        addIcons(data);
-        populateList(data);
-        saveListOrder();
-      } else {
-        defaultData[rowNum].title = $("#edit-title").val();
-        defaultData[rowNum].url = $("#edit-url").val();
-        defaultData[rowNum].icon = $("#edit-icon").val();
-        addIcons(defaultData);
-        populateList(defaultData);
-        saveListOrder();
-      }
-
-      $("#edit-form").remove();
-    });
   };
 
   if (
@@ -253,13 +256,13 @@ $(document).ready(function() {
     }
   });
 
-  $("#add-item").click(function() {
-    alert("add item");
-  });
-
   $("#form-container").append(
     "<span id='add-item'><i class='fa fa-plus'></i>Add new item...</span>"
   );
+
+  $("#add-item").click(function() {
+    showEditForm(editForm, null, "newItem");
+  });
 
   // Hide edit form when clicking outside of it
   $(document).mouseup(function(e) {
