@@ -100,6 +100,21 @@ $(document).ready(function() {
     }
   };
 
+  const validateFields = function(url, icon) {
+    if (!url || !icon) {
+      alert("Please fill out out fields");
+      return false;
+    }
+    if (!url.startsWith("http")) {
+      alert("URL should start with http or https");
+      return false;
+    }
+    if (!icon.startsWith("fa")) {
+      alert("Font-Awesome icons should start with 'fa'");
+      return false;
+    }
+  };
+
   const showEditForm = function(editForm, rowNum, addItem) {
     $("#form-container").append(editForm);
     if (addItem) {
@@ -121,6 +136,8 @@ $(document).ready(function() {
 
     $("#edit-form form").submit(function(e) {
       e.preventDefault(); // prevent page refresh
+
+      if (validateFields($("#edit-url").val(), $("#edit-icon").val()) === false) return false;
 
       let data = defaultData;
 
