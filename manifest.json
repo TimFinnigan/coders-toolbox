@@ -10,8 +10,5 @@
   "browser_action": {
     "default_icon": "icon_16.png",
     "default_popup": "toolbox.html"
-  },
-  "permissions": [
-    ""
-  ]
+  }
 }
